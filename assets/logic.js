@@ -3,22 +3,21 @@ var animals = [];
 //add animal
 $('#add-animal').on('click', function () {
     event.preventDefault();
+
     var animal = $('#animal-input').val().trim();
     animals.push(animal);
-
     $('#animal-buttons').append('<button data-animal="' + animal + '">' + animal + '</button>');
     $('#animal-input').val('');
-
-    $('button').on('click', query);
+    $('button').on('click', displayQuery);
 });
 
 
 
-var query = function (e) {
+var displayQuery = function (e) {
     //assigning button attribute of ID 'data-animal'
     var animal = $(this).attr("data-animal");
     var queryURL = "http://api.giphy.com/v1/gifs/search?q=" +
-        animal + "&api_key=dc6zaTOxFJmzC&limit=10";
+        animal + "&api_key=bf3c7649db354d1f97851d9044111306&limit=10";
     $.ajax({
         url: queryURL,
         method: "GET"
@@ -48,3 +47,5 @@ var query = function (e) {
             }
         });
 };
+
+
