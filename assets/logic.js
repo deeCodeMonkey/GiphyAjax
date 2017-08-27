@@ -16,7 +16,7 @@ $('#add-animal').on('click', function () {
 var displayQuery = function (e) {
     //assigning button attribute of ID 'data-animal'
     var animal = $(this).attr("data-animal");
-    var queryURL = "http://api.giphy.com/v1/gifs/search?q=" +
+    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
         animal + "&api_key=bf3c7649db354d1f97851d9044111306&limit=10";
     $.ajax({
         url: queryURL,
