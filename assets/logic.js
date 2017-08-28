@@ -13,6 +13,7 @@ $('#add-animal').on('click', function () {
 
 
 
+
 var displayQuery = function (e) {
     //assigning button attribute of ID 'data-animal'
     var animal = $(this).attr("data-animal");
@@ -38,6 +39,13 @@ var displayQuery = function (e) {
                 var animalImage = $("<img>");
                 //assign image attribute-- GET FROM OBJECT OF API
                 animalImage.attr("src", results[i].images.fixed_height.url);
+                animalImage.attr("data-still", results[i].images.fixed_height_still.url);
+                animalImage.attr("data-animate", results[i].images.fixed_height.url);
+                animalImage.attr("data-state", "animate");
+
+                animalImage.on('click', imgClicked);
+
+
                 //prepend statement to gifDiv
                 gifDiv.prepend(p);
                 //prepend image to gifDiv
@@ -49,3 +57,13 @@ var displayQuery = function (e) {
 };
 
 
+var imgClicked = function () {
+    var state = $(this).attr('data-state');
+    if (state === 'animate') {
+        $(this).attr("src", $(this).attr('data-still'));
+        $(this).attr("data-state", 'still');
+    } else if (state === 'still') {
+        $(this).attr("src", $(this).attr('data-animate'));
+        $(this).attr("data-state", 'animate');
+    }
+};
